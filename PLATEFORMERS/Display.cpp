@@ -5,21 +5,19 @@ void paintBox
     (
     const int8_t aX, const int8_t aY, 
     const uint8_t aWidth, const uint8_t aHeight, 
-    const uint8_t aState, Character &aCharacter
+    const uint8_t aImage, Character &aCharacter
     ) 
 {
-  switch (aState)
+  switch (aImage)
   {
     case 0:
       gb.display.drawImage(aX, aY, IMG_FLUP_RIGHT);
       break;
     case 1:
-      for (uint8_t i = 0; i < 2; i++ )
-      { 
-        aCharacter.x++;
-        gb.display.drawImage(aCharacter.x++, aY, IMG_FLUP_RIGHT_ROLL);
-      }
-      aCharacter.State = 0;
+      gb.display.drawImage(aX, aY, IMG_FLUP_RIGHT);
+      break;
+    case 2:
+      gb.display.drawImage(aX, aY, IMG_FLUP_LEFT);
       break;
   }
 }
@@ -36,7 +34,7 @@ void paintHero(Character &aCharacter)
   (
     aCharacter.x - OVER_CENTER_X_HERO, aCharacter.y - OVER_CENTER_Y_HERO, 
     WIDTH_HERO, HEIGHT_HERO, 
-    aCharacter.State, aCharacter
+    aCharacter.Image, aCharacter
   );
 }
 

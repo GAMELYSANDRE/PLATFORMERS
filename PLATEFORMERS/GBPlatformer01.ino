@@ -3,7 +3,7 @@
 #include "Constants.h"
 #include "Display.h"
 #include "Commands.h"
-
+#include "PhysicsEngine.h"
 
 uint8_t stateOfGame;
 Character hero;
@@ -34,7 +34,26 @@ void loop()
       stateOfGame = PLAY_STATE;
       break;
     case PLAY_STATE:
-      stateOfGame = manageCommands(hero);
+      if(hero.state == ON_THE_PLATFORM_STATE) 
+      {
+        stateOfGame = manageCommands(hero);
+      }
+      if(hero.state != JUMP_STATE && hero.state != PUSH_FOR_JUMP_STATE) 
+      {
+        gravity(hero);
+      } 
+      else if(hero.state == JUMP_STATE || hero.state == PUSH_FOR_JUMP_STATE) 
+      {
+        jump(hero);
+      }
+      /*
+      gb.display.print("     ETAT : ");
+      gb.display.println(hero.state);
+      gb.display.print("VITESSE V : ");
+      gb.display.println(hero.vy);
+      gb.display.print("  COORD Y : ");
+      gb.display.println(hero.y);
+      */ 
       paint(hero);
       break;
     default:

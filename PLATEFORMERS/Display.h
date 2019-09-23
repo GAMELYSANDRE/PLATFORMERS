@@ -13,7 +13,7 @@ void paintBox
   (
     const int8_t aX, const int8_t aY, 
     const uint8_t aWidth, const uint8_t aHeight, 
-    const uint8_t aState, Character &aCharacter
+    const uint8_t aImage, Character &aCharacter
   );
 const uint8_t paintMenu();
 
